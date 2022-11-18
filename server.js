@@ -85,9 +85,9 @@ app.get('/', (req, res) => {
     if (!req.session.authenticated) {
         console.log("...Not authenticated; directing to login");
         res.redirect("/login");
+    }else{
+        console.log("...Hello, welcome back");
     }
-    console.log("...Hello, welcome back");
-    handle_Find(req, res, {});
 });
 
 //login
