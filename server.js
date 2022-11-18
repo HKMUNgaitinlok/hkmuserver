@@ -11,10 +11,5 @@ http.createServer(function (req, res) {
 //redirect
 //handling requests
 app.get('/', (req, res) => {
-    if (!req.session.authenticated) {
-        console.log("...Not authenticated; directing to login");
-        res.redirect("1.txt");
-    }
-    console.log("...Hello, welcome back");
-    handle_Find(req, res, {});
+    res.status(200).render("1");
 });
