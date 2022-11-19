@@ -152,6 +152,7 @@ app.get('/home', (req, res) => {
         findDocument(db, {}, (docs) => {
             client.close();
             console.log("Closed DB connection.");
+            console.log(doc);
             res.status(200).render('home', { name: `${req.session.userid}`, ninventory: docs.length, inventory: docs });
         });
     });
