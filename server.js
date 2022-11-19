@@ -153,7 +153,7 @@ app.get('/home', (req, res) => {
             client.close();
             console.log("Closed DB connection.");
             console.log(docs);
-            res.status(200).render('home', { name: `${req.session.userid}`, ninventory: docs.length, docs: docs });
+            res.status(200).render('home', { name: `${req.session.userid}`, ninventory: docs.length, inventory : docs });
         });
     });
     res.status(200).render('home', {name: `${req.session.userid}`});
