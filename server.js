@@ -71,11 +71,29 @@ const handle_Find = (req, res, criteria) => {
         assert.equal(null, err);
         console.log("Connected successfully to the DB server.");
         const db = client.db(dbName);
-        //callback()
+        callback()
         findDocument(db, {}, (docs) => {
             client.close();
             console.log("Closed DB connection.");
             res.status(200).render('home', { name: `${req.session.userid}`, ninventory: docs.length, inventory: docs });
+        });
+    });
+}
+
+//detail
+const handle_Details = (res, criteria) => {
+    const client = new MongoClient(mongourl);
+    client.connect((err) => {
+        assert.equal(null, err);
+        console.log("Connected successfully to DB server");
+        const db = client.db(dbName);
+
+        let DOCID = {};
+        DOCID['_id'] = ObjectID(criteria._id);
+        findDocument(db, DOCID, (docs) => {
+            client.close();
+            console.log("Closed DB connection");
+            res.status(200).render('details', { inventory: docs[0] });
         });
     });
 }
@@ -85,9 +103,9 @@ app.get('/', (req, res) => {
     if (!req.session.authenticated) {
         console.log("...Not authenticated; directing to login");
         res.redirect("/login");
-    }else{
-        console.log("...Hello, welcome back");
     }
+    console.log("...Hello, welcome back");
+   // handle_Find(req, res, {});
 });
 
 //login
@@ -168,15 +186,15 @@ app.post('/create', (req, res) => {
         DOC['quantity'] = req.fields.quantity;
         DOC['owner'] = `${req.session.userid}`;
         console.log("...putting data into DOC");
-        var adoc = {};
-        adoc['building'] = req.fields.building;
-        adoc['country'] = req.fields.country;
+        var addrdoc = {};
+        addrdoc['building'] = req.fields.building;
+        addrdoc['country'] = req.fields.country;
         if (req.fields.latitude && req.fields.longitude) {
-            adoc['coord'] = [req.fields.latitude, req.fields.longitude];
+            addrdoc['coord'] = [req.fields.latitude, req.fields.longitude];
         }
-        adoc['street'] = req.fields.street;
-        adoc['zipcode'] = req.fields.zipcode;
-        DOC['address'] = adoc;
+        addrdoc['street'] = req.fields.street;
+        addrdoc['zipcode'] = req.fields.zipcode;
+        DOC['address'] = addrdoc;
 
         var pdoc = {};
         if (req.files.photo && req.files.photo.size > 0 && (pdoc['mimetype'] == 'image/jpeg' || pdoc['mimetype'] == 'image/png')) {
@@ -208,7 +226,19 @@ app.post('/create', (req, res) => {
     res.status(200).render('info', { message: "Document created" });
 });
 
+//detail
+app.get('/details', (req, res) => {
+    handle_Details(res, req.query);
+});
 
+app.get("/map", (req, res) => {
+    console.log("...returning the map leaflet.");
+    res.status(200).render("map", {
+        lat: `${req.query.lat}`,
+        lon: `${req.query.lon}`,
+        zoom: `${req.query.zoom ? req.query.zoom : 15}`
+    });
+});
 
 app.get('/*', (req, res) => {
     res.status(404).render("info", { message: `${req.path} - Unknown request!` })
