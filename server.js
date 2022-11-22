@@ -191,6 +191,7 @@ app.post('/create', (req, res) => {
         DOC['owner'] = req.fields.owner;
 		/*DOC['photo'] = req.files.photo;*/
         console.log("...putting data into DOC");
+		console.log(DOC);
 /*
         var pdoc = {};
         if (req.files.photo && req.files.photo.size > 0 && (pdoc['mimetype'] == 'image/jpeg' || pdoc['mimetype'] == 'image/png')) {
