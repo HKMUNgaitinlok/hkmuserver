@@ -209,7 +209,6 @@ app.get('/edit', (req, res) => {
     const client = new MongoClient(mongourl);
 	let parsedURL = url.parse(req.url,true);
 	console.log(parsedURL.query.id);
-	const findDocument = (db, criteria, callback) => {
 		console.log("111111111111");
     let cursor = db.collection('inventory').find({"_id":parsedURL.query.id});
 	console.log("22222222222222222");
@@ -218,7 +217,7 @@ app.get('/edit', (req, res) => {
         assert.equal(null,err);
 		console.log("Closed DB connection.");
 		console.log(docs);
-    })};
+    });
 	//callback()
 	
 	console.log("Connected successfully to the DB server.");
