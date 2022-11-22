@@ -160,7 +160,6 @@ app.get('/home', (req, res) => {
         });
 		
     });
-    res.status(200).render('home', {name: `${req.session.userid}`});
 });
 
 //create
