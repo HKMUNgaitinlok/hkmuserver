@@ -101,10 +101,12 @@ const handle_Details = (res, criteria) => {
 //handling requests
 app.get('/', (req, res) => {
 	console.log(req.session.authenticated);
-    if (!req.session.authenticated) {
+    if (req.session.authenticated) {
+		res.redirect("/home");
+    }else{
         console.log("...Not authenticated; directing to login");
         res.redirect("/login");
-    }
+	}
     console.log("...Hello, welcome back");
    // handle_Find(req, res, {});
 });
