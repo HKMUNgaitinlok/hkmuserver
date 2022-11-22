@@ -41,6 +41,7 @@ app.use(session({
 
 //functions
 //create new inventory docs
+/*
 const createDocument = (db, createDoc, callback) => {
     const client = new MongoClient(mongourl);
     client.connect((err) => {
@@ -50,11 +51,12 @@ const createDocument = (db, createDoc, callback) => {
 
         db.collection('inventory').insertOne(createDoc, (error, results) => {
             if (error) throw error;
-            console.log(results);
+				console.log(results);
             //callback();
         });
     });
 }
+*/
 //find
 const findDocument = (db, criteria, callback) => {
     let cursor = db.collection('inventory').find(criteria);
