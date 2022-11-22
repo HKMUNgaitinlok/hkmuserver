@@ -183,23 +183,13 @@ app.post('/create', (req, res) => {
         var objectId = new ObjectID(timestamp);
 
         DOC["_id"] = objectId;
-
-        DOC['inv_id'] = "";
+        DOC['inv_id'] = req.fields.inv_id;
         DOC['name'] = req.fields.name;
         DOC['inv_type'] = req.fields.inv_type;
         DOC['quantity'] = req.fields.quantity;
         DOC['description'] = req.fields.inv_type;
-        DOC['owner'] = `${req.session.userid}`;
+        DOC['owner'] = req.fields.owner;
         console.log("...putting data into DOC");
-        var addrdoc = {};
-        addrdoc['building'] = req.fields.building;
-        addrdoc['country'] = req.fields.country;
-        if (req.fields.latitude && req.fields.longitude) {
-            addrdoc['coord'] = [req.fields.latitude, req.fields.longitude];
-        }
-        addrdoc['street'] = req.fields.street;
-        addrdoc['zipcode'] = req.fields.zipcode;
-        DOC['address'] = addrdoc;
 
         var pdoc = {};
         if (req.files.photo && req.files.photo.size > 0 && (pdoc['mimetype'] == 'image/jpeg' || pdoc['mimetype'] == 'image/png')) {
