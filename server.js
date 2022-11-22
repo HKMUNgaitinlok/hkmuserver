@@ -211,6 +211,7 @@ app.post('/create', (req, res) => {
 			console.log("Closed DB connection");
 			res.status(200).render('info', { message: "Document created successfully!" });
 		});
+		console.log("document Created");
     });
 });
 
