@@ -210,7 +210,7 @@ app.get('/edit', (req, res) => {
 	let parsedURL = url.parse(req.url,true);
 	const db = client.db(dbName);
 	console.log(parsedURL.query.id);
-	
+	console.log("22222222222")
 	const findDocument = (db, criteria, callback) => {
     let cursor = db.collection('inventory').find({"_id":parsedURL.query.id});
     cursor.toArray((err,docs) => {
