@@ -9,7 +9,7 @@ const formidable = require('express-formidable');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 
-const mongourl = 'mongodb+srv://s1296848:Passw0rd1@cluster0.ew14v5x.mongodb.net/?retryWrites=true&w=majority';
+const mongourl = 'mongodb+srv://s1296848:Password1@cluster0.ew14v5x.mongodb.net/?retryWrites=true&w=majority';
 const dbName = 'hkmu_inventory';
 
 const express = require('express');
