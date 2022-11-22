@@ -9,8 +9,8 @@ const formidable = require('express-formidable');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 
-const mongourl = 'mongodb+srv://12345:12345@cluster0.cvrczfj.mongodb.net/?retryWrites=true&w=majority';
-const dbName = 'test';
+const mongourl = 'mongodb+srv://s1296848:Passw0rd1@cluster0.ew14v5x.mongodb.net/?retryWrites=true&w=majority';
+const dbName = 'hkmu_inventory';
 
 const express = require('express');
 const app = express();
@@ -41,7 +41,6 @@ app.use(session({
 
 //functions
 //create new inventory docs
-/*
 const createDocument = (db, createDoc, callback) => {
     const client = new MongoClient(mongourl);
     client.connect((err) => {
@@ -56,7 +55,6 @@ const createDocument = (db, createDoc, callback) => {
         });
     });
 }
-*/
 //find
 const findDocument = (db, criteria, callback) => {
     let cursor = db.collection('inventory').find(criteria);
@@ -186,6 +184,7 @@ app.post('/create', (req, res) => {
         DOC['name'] = req.fields.name;
         DOC['inv_type'] = req.fields.inv_type;
         DOC['quantity'] = req.fields.quantity;
+        DOC['description'] = req.fields.inv_type;
         DOC['owner'] = `${req.session.userid}`;
         console.log("...putting data into DOC");
         var addrdoc = {};
