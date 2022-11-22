@@ -206,7 +206,7 @@ app.post('/create', (req, res) => {
 */
         if (DOC.name && DOC.owner) {
             console.log("...Creating the document");
-            insertDocument(db, DOC, (docs) => {
+            createDocument(db, DOC, (docs) => {
                 client.close();
                 console.log("Closed DB connection");
                 res.status(200).render('info', { message: "Document created successfully!" });
