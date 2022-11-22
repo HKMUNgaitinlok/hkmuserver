@@ -153,9 +153,9 @@ app.get('/home', (req, res) => {
         const db = client.db(dbName);
         //callback()
         findDocument(db, {}, (docs) => {
+            res.status(200).render('home', { name: `${req.session.userid}`, ninventory: docs.length, inventory : docs });
             client.close();
             console.log("Closed DB connection.");
-            res.status(200).render('home', { name: `${req.session.userid}`, ninventory: docs.length, inventory : docs });
         });
     });
     res.status(200).render('home', {name: `${req.session.userid}`});
