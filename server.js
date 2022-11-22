@@ -206,15 +206,18 @@ app.post('/create', (req, res) => {
 app.get('/edit', (req, res) => {
     console.log("...Welcome to the edit page!")
     const client = new MongoClient(mongourl);
-		
+}
 	const db = client.db(dbName);
 	console.log(req);
-	//callback()
-	findDocument(db, {_id:req}, (docs) => {
-		client.close();
+	
+	const findDocument = (db, criteria, callback) => {
+    let cursor = db.collection('inventory').find("_id":req);
+    cursor.toArray((err,docs) => {
+        assert.equal(null,err);
 		console.log("Closed DB connection.");
 		console.log(docs);
-	});
+    })
+	//callback()
 	
 	console.log("Connected successfully to the DB server.");
     client.connect((err) => {
