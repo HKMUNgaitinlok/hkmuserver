@@ -189,7 +189,7 @@ app.post('/create', (req, res) => {
         DOC['quantity'] = req.fields.quantity;
         DOC['description'] = req.fields.inv_type;
         DOC['owner'] = req.fields.owner;
-		/*DOC['photo'] = req.files.photo;*/
+		DOC['photo'] = req.files.photo;
         console.log("...putting data into DOC");
 		console.log(DOC);
 /*
