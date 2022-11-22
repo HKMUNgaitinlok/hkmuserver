@@ -207,11 +207,13 @@ app.post('/create', (req, res) => {
 app.get('/edit', (req, res) => {
     console.log("...Welcome to the edit page!")
     const client = new MongoClient(mongourl);
+	console.log("000000000");
 	let parsedURL = url.parse(req.url,true);
+	console.log("11111111");
 	const db = client.db(dbName);
-	console.log("11111111")
+	console.log("22222222222");
 	console.log(parsedURL.query.id);
-	console.log("22222222222")
+	console.log("33333333333");
 	const findDocument = (db, criteria, callback) => {
     let cursor = db.collection('inventory').find({"_id":parsedURL.query.id});
     cursor.toArray((err,docs) => {
