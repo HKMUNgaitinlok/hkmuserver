@@ -192,19 +192,6 @@ app.post('/create', (req, res) => {
 		DOC['photo'] = req.files.photo;
         console.log("...putting data into DOC");
 		console.log(DOC);
-/*
-        var pdoc = {};
-        if (req.files.photo && req.files.photo.size > 0 && (pdoc['mimetype'] == 'image/jpeg' || pdoc['mimetype'] == 'image/png')) {
-            fs.readFile(req.files.photo.path, (err, data) => {
-                assert.equal(err, null);
-                pdoc['title'] = req.fields.title;
-                pdoc['data'] = new Buffer.from(data).toString('base64');
-                pdoc['mimetype'] = req.files.photo.type;
-
-            });
-        }
-        DOC['photo'] = pdoc;
-*/
 		console.log("...Creating the document");
 		createDocument(db, DOC, (docs) => {
 			client.close();
@@ -213,6 +200,66 @@ app.post('/create', (req, res) => {
 		res.status(200).render('info', { message: "Document created successfully!" });
 		console.log("document Created");
     });
+});
+
+//edit
+app.get('/edit', (req, res) => {
+    console.log("...Welcome to the edit page!")
+    const client = new MongoClient(mongourl);
+    client.connect((err) => {
+        assert.equal(null, err);
+        console.log("Connected successfully to the DB server.");
+		
+        const db = client.db(dbName);
+		console.log(req);
+        //callback()
+        findDocument(db, {_id:req}, (docs) => {
+			client.close();
+            console.log("Closed DB connection.");
+            console.log(docs);
+            res.status(200).render('home',{name: `${req.session.userid}` ,ninventory: docs.length, inventory: docs});
+        });
+		
+    });
+	
+    res.status(200).render("edit");
+});
+app.post('/edit', (req, res) => {
+    console.log("...edit a document!");
+	/*
+    const client = new MongoClient(mongourl);
+    client.connect((err) => {
+        assert.equal(null, err);
+        console.log("Connected successfully to the DB server.");
+        const db = client.db(dbName);
+
+        // Get a timestamp in seconds
+        var timestamp = Math.floor(new Date().getTime() / 1000);
+        // Create a date with the timestamp
+        var timestampDate = new Date(timestamp * 1000);
+
+        // Create a new ObjectID with a specific timestamp
+        var objectId = new ObjectID(timestamp);
+
+        DOC["_id"] = objectId;
+        DOC['inv_id'] = req.fields.inv_id;
+        DOC['name'] = req.fields.name;
+        DOC['inv_type'] = req.fields.inv_type;
+        DOC['quantity'] = req.fields.quantity;
+        DOC['description'] = req.fields.inv_type;
+        DOC['owner'] = req.fields.owner;
+		DOC['photo'] = req.files.photo;
+        console.log("...putting data into DOC");
+		console.log(DOC);
+		console.log("...Creating the document");
+		createDocument(db, DOC, (docs) => {
+			client.close();
+			console.log("Closed DB connection");
+		});
+		res.status(200).render('info', { message: "Document created successfully!" });
+		console.log("document Created");
+    });
+	*/
 });
 
 //detail
