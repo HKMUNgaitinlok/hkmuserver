@@ -206,7 +206,7 @@ app.post('/create', (req, res) => {
 app.get('/edit', (req, res) => {
     console.log("...Welcome to the edit page!")
     const client = new MongoClient(mongourl);
-}
+
 	const db = client.db(dbName);
 	console.log(req);
 	
@@ -216,7 +216,7 @@ app.get('/edit', (req, res) => {
         assert.equal(null,err);
 		console.log("Closed DB connection.");
 		console.log(docs);
-    })
+    })};
 	//callback()
 	
 	console.log("Connected successfully to the DB server.");
