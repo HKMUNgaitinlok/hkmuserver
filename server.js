@@ -150,15 +150,16 @@ app.get('/home', (req, res) => {
     client.connect((err) => {
         assert.equal(null, err);
         console.log("Connected successfully to the DB server.");
-		/*
+		
         const db = client.db(dbName);
+	console.log(db.toString());
         //callback()
         findDocument(db, {}, (docs) => {
 			client.close();
             console.log("Closed DB connection.");
             res.status(200).render('home', { name: `${req.session.userid}`, ninventory: docs.length, inventory : docs });
         });
-		*/
+		
     });
     res.status(200).render('home', {name: `${req.session.userid}`});
 });
