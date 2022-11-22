@@ -24,12 +24,12 @@
                         <script> var inventory = <%- JSON.stringify(inventory)%>; 
 						 for (var i=0;i<<%=ninventory%>;i++){ 
 							document.write(
-							"inv_id : " + inventory[i]["inv_id"]+"\n"+
-							"name : " + inventory[i]["name"]+"\n"+
-							"inv_type : " + inventory[i]["inv_type"]+"\n"+
-							"quantity : " + inventory[i]["quantity"]+"\n"+
-							"description : " + inventory[i]["description"]+"\n"+
-							"owner : " + inventory[i]["owner"]+"\n");
+							"inv_id : " + inventory[i]["inv_id"]+"<br>"+
+							"name : " + inventory[i]["name"]+"<br>"+
+							"inv_type : " + inventory[i]["inv_type"]+"<br>"+
+							"quantity : " + inventory[i]["quantity"]+"<br>"+
+							"description : " + inventory[i]["description"]+"<br>"+
+							"owner : " + inventory[i]["owner"]+"<br>");
 						}
 						</script>
             </div>
