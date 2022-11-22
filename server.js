@@ -211,7 +211,7 @@ app.get('/edit', (req, res) => {
 	console.log(req);
 	
 	const findDocument = (db, criteria, callback) => {
-    let cursor = db.collection('inventory').find("_id":req);
+    let cursor = db.collection('inventory').find({"_id":req});
     cursor.toArray((err,docs) => {
         assert.equal(null,err);
 		console.log("Closed DB connection.");
