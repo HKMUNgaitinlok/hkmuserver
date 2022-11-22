@@ -209,6 +209,7 @@ app.get('/edit', (req, res) => {
     const client = new MongoClient(mongourl);
 	let parsedURL = url.parse(req.url,true);
 	const db = client.db(dbName);
+	console.log("11111111")
 	console.log(parsedURL.query.id);
 	console.log("22222222222")
 	const findDocument = (db, criteria, callback) => {
