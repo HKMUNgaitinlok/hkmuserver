@@ -189,8 +189,9 @@ app.post('/create', (req, res) => {
         DOC['quantity'] = req.fields.quantity;
         DOC['description'] = req.fields.inv_type;
         DOC['owner'] = req.fields.owner;
+		/*DOC['photo'] = req.files.photo;*/
         console.log("...putting data into DOC");
-
+/*
         var pdoc = {};
         if (req.files.photo && req.files.photo.size > 0 && (pdoc['mimetype'] == 'image/jpeg' || pdoc['mimetype'] == 'image/png')) {
             fs.readFile(req.files.photo.path, (err, data) => {
@@ -202,7 +203,7 @@ app.post('/create', (req, res) => {
             });
         }
         DOC['photo'] = pdoc;
-
+*/
         if (DOC.name && DOC.owner) {
             console.log("...Creating the document");
             insertDocument(db, DOC, (docs) => {
