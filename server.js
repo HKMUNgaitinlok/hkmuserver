@@ -205,22 +205,13 @@ app.post('/create', (req, res) => {
         }
         DOC['photo'] = pdoc;
 */
-        if (DOC.name && DOC.owner) {
-            console.log("...Creating the document");
-            createDocument(db, DOC, (docs) => {
-                client.close();
-                console.log("Closed DB connection");
-                res.status(200).render('info', { message: "Document created successfully!" });
-            });
-        } else {
-            client.close();
-            console.log("Closed DB connection");
-            res.status(200).render('info', { message: "Invalid entry - Name & Owner is compulsory!" });
-        }
+		console.log("...Creating the document");
+		createDocument(db, DOC, (docs) => {
+			client.close();
+			console.log("Closed DB connection");
+			res.status(200).render('info', { message: "Document created successfully!" });
+		});
     });
-    client.close();
-    console.log("Closed DB connection");
-    res.status(200).render('info', { message: "Document created" });
 });
 
 //detail
