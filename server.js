@@ -207,6 +207,7 @@ app.post('/create', (req, res) => {
 app.get('/edit', (req, res) => {
     console.log("...Welcome to the edit page!")
     const client = new MongoClient(mongourl);
+	const db = client.db(dbName);
 	let parsedURL = url.parse(req.url,true);
 	console.log(parsedURL.query.id);
 		console.log("111111111111");
