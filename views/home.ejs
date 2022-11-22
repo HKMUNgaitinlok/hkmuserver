@@ -25,7 +25,7 @@
                     <thead ><tr class="table-primary"><th>inventory Name</th></tr></thead>
                     <tbody style='height:300px;display:block;overflow:scroll'>
                         <script> var inventory = <%=inventory%>; 
-						 for (var i=0;i<ninventory;i++){ 
+						 for (var i=0;i<<%=ninventory%>;i++){ 
 							document.write(
 							"inv_id : " + inventory[i]["inv_id"]+"\n"+
 							"name : " + inventory[i]["name"]+"\n"+
