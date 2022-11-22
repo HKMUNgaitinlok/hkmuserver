@@ -206,23 +206,22 @@ app.post('/create', (req, res) => {
 app.get('/edit', (req, res) => {
     console.log("...Welcome to the edit page!")
     const client = new MongoClient(mongourl);
+		
+	const db = client.db(dbName);
+	console.log(req);
+	//callback()
+	findDocument(db, {_id:req}, (docs) => {
+		client.close();
+		console.log("Closed DB connection.");
+		console.log(docs);
+	});
+	
+	console.log("Connected successfully to the DB server.");
     client.connect((err) => {
         assert.equal(null, err);
-        console.log("Connected successfully to the DB server.");
-		
-        const db = client.db(dbName);
-		console.log(req);
-        //callback()
-        findDocument(db, {_id:req}, (docs) => {
-			client.close();
-            console.log("Closed DB connection.");
-            console.log(docs);
-            res.status(200).render('home',{name: `${req.session.userid}` ,ninventory: docs.length, inventory: docs});
-        });
 		
     });
 	
-    res.status(200).render("edit");
 });
 app.post('/edit', (req, res) => {
     console.log("...edit a document!");
