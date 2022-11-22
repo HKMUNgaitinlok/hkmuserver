@@ -222,10 +222,12 @@ app.get('/edit', (req, res) => {
 	//callback()
 	
 	console.log("Connected successfully to the DB server.");
+	/*
     client.connect((err) => {
         assert.equal(null, err);
 		
     });
+	*/
 	
 });
 app.post('/edit', (req, res) => {
