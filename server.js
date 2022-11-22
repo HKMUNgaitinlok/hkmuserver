@@ -152,8 +152,9 @@ app.get('/home', (req, res) => {
         console.log("Connected successfully to the DB server.");
 		
         const db = client.db(dbName);
-	console.log(db.toString());
         //callback()
+		str = JSON.stringify(db);
+		console.log(str);
         findDocument(db, {}, (docs) => {
 			client.close();
             console.log("Closed DB connection.");
