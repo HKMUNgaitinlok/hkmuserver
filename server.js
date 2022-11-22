@@ -208,28 +208,7 @@ app.get('/edit', (req, res) => {
     console.log("...Welcome to the edit page!")
 	const client = new MongoClient(mongourl);
     client.connect((err) => {
-    const client = new MongoClient(mongourl);
-	const db = client.db(dbName);
-	let parsedURL = url.parse(req.url,true);
-	console.log(parsedURL.query.id);
-		console.log("111111111111");
-    let cursor = db.collection('inventory').find({"_id":parsedURL.query.id});
-	console.log("22222222222222222");
-    cursor.toArray((err,docs) => {
-		console.log("333333333333333333");
-        assert.equal(null,err);
-		console.log("Closed DB connection.");
-		console.log(docs);
-    });
-	//callback()
-	
-	console.log("Connected successfully to the DB server.");
-	/*
-    client.connect((err) => {
-        assert.equal(null, err);
-		
-    });
-	*/
+
 	});
 	
 });
