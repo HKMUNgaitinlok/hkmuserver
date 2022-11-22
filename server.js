@@ -1,6 +1,7 @@
 //HTML 
 const html = require('html');
 const url = require('url');
+const http = require('http'); 
 const assert = require('assert');
 //File
 const fs = require('fs');
@@ -208,10 +209,10 @@ app.get('/edit', (req, res) => {
     const client = new MongoClient(mongourl);
 
 	const db = client.db(dbName);
-	console.log(req.id);
+	console.log(parsedURL.query.id);
 	
 	const findDocument = (db, criteria, callback) => {
-    let cursor = db.collection('inventory').find({"_id":req});
+    let cursor = db.collection('inventory').find({"_id":parsedURL.query.id});
     cursor.toArray((err,docs) => {
         assert.equal(null,err);
 		console.log("Closed DB connection.");
