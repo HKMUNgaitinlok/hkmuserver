@@ -208,7 +208,7 @@ app.get('/edit', (req, res) => {
     const client = new MongoClient(mongourl);
 
 	const db = client.db(dbName);
-	console.log(req);
+	console.log(req.id);
 	
 	const findDocument = (db, criteria, callback) => {
     let cursor = db.collection('inventory').find({"_id":req});
