@@ -153,10 +153,10 @@ app.get('/home', (req, res) => {
 		
         const db = client.db(dbName);
         //callback()
-		console.log(JSON.stringify(db));
         findDocument(db, {}, (docs) => {
 			client.close();
             console.log("Closed DB connection.");
+			console.log(docs);
             res.status(200).render('home', { name: `${req.session.userid}`, ninventory: docs.length, inventory : docs });
         });
 		
