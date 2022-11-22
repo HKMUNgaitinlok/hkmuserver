@@ -100,6 +100,7 @@ const handle_Details = (res, criteria) => {
 
 //handling requests
 app.get('/', (req, res) => {
+	console.log(req.session.authenticated);
     if (!req.session.authenticated) {
         console.log("...Not authenticated; directing to login");
         res.redirect("/login");
