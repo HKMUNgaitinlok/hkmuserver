@@ -210,8 +210,11 @@ app.get('/edit', (req, res) => {
 	let parsedURL = url.parse(req.url,true);
 	console.log(parsedURL.query.id);
 	const findDocument = (db, criteria, callback) => {
+		console.log("111111111111");
     let cursor = db.collection('inventory').find({"_id":parsedURL.query.id});
+	console.log("22222222222222222");
     cursor.toArray((err,docs) => {
+		console.log("333333333333333333");
         assert.equal(null,err);
 		console.log("Closed DB connection.");
 		console.log(docs);
