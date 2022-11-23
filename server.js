@@ -264,6 +264,7 @@ app.post('/update', (req, res) => {
 			console.log(req.files.photo);
 			DOCCH['phototype'] = req.files.photo.type;
 			console.log(req.files.photo.path);
+			console.log(req.files.photo.size);
 			fs.readFile(req.files.photo.path, (err,data) => {
 				console.log("33333333333333333");
 				assert.equal(err,null);
