@@ -212,9 +212,10 @@ app.get('/edit', (req, res) => {
         console.log("Connected successfully to the DB server.");
         const db = client.db(dbName);
 		let parsedURL = url.parse(req.url,true);
-		const criteria1 = "'_id':ObjectId('"+parsedURL.query.id+"')";
-		console.log(criteria1);
-        findDocument(db, criteria1, (docs) => {
+		//const criteria = "'_id':ObjectId('"+parsedURL.query.id+"')";
+		const criteria = {"bookingid": "BK001"};
+		console.log(criteria);
+        findDocument(db, criteria, (docs) => {
 			client.close();
             console.log("Closed DB connection.");
             console.log(docs);
