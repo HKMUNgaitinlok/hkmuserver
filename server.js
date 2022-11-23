@@ -251,14 +251,14 @@ app.post('/update', (req, res) => {
 	console.log("111111");
     client.connect((err) => {
 		console.log("22222222222");
+		let parsedURL = url.parse(req.url,true);
+		console.log(parsedURL.query.id);
 		const findDocument = (db, criteria, callback) => {
 			console.log("33333333333333333");
 			db.collection('inventory').updateMany(criteria,{$set: changes}, (err,results) => {
 			console.log("4444444444");
 				assert.equal(err,null);
 				//console.log(results);
-				let parsedURL = url.parse(req.url,true);
-				console.log(parsedURL.query.id);
 				console.log(`Updated document(s): ${results.result.nModified}`)
 				callback();
 			});
