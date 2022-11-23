@@ -58,7 +58,7 @@ const createDocument = (db, createDoc, callback) => {
 }
 //find
 const findDocument = (db, criteria, callback) => {
-    let cursor = db.collection('inventory').find(criteria);
+    let cursor = db.collection('inventory').find(criteria.replace(/["]/g, ""));
     console.log(`findDocument: ${JSON.stringify(criteria)}`);
     cursor.toArray((err, docs) => {
         assert.equal(err, null);
@@ -214,7 +214,7 @@ app.get('/edit', (req, res) => {
 		let parsedURL = url.parse(req.url,true);
 		const criteria = "{'_id':ObjectId('"+parsedURL.query.id+"')}";
 		console.log(criteria);
-        findDocument(db, criteria.replace(/["]/g, ""), (docs) => {
+        findDocument(db, criteria, (docs) => {
 			client.close();
             console.log("Closed DB connection.");
             console.log(docs);
