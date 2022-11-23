@@ -261,6 +261,7 @@ app.post('/update', (req, res) => {
         DOCCH['description'] = req.fields.description;
         DOCCH['owner'] = req.fields.owner;
 		//if(req.files.photo.size>0){
+			console.log(req.files.photo);
 			DOCCH['phototype'] = req.files.photo.type;
 			fs.readFile(req.files.photo.path, (err,data) => {
 				assert.equal(err,null);
