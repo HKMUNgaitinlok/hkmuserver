@@ -15,7 +15,7 @@
         <div class="jumbotron text-center">
         </div>
         <div class="container-fluid text-left">
-            <form action="/update?id=<%=inventory[0]["_id"]%>" method="POST" enctype="multipart/form-data">
+            <form action="/update?id=<%=inventory[0]["_id"]%>" method="GET" enctype="multipart/form-data">
                 <label for="inv_id">inv_id: </label>
                 <input type="text" id="inv_id" name="inv_id" class="form-control" placeholder="inv_id" value='<%=inventory[0]["inv_id"]%>'><br>
                 
