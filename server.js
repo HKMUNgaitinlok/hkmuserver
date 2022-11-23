@@ -268,7 +268,6 @@ app.get('/details', (req, res) => {
 			client.close();
             console.log("Closed DB connection.");
             console.log(docs);
-            console.log(docs["photo"]["_wirteStream"]);
 			res.status(200).render("details", {inventory: docs});
             //res.status(200).render('home',{name: `${req.session.userid}` ,ninventory: docs.length, inventory: docs});
         });
