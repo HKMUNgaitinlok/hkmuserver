@@ -39,9 +39,10 @@ app.use(session({
     keys: ['th1s!sA5ecretK3y'],
     //maxAge: 90 * 24 * 60 * 60 * 1000
 }));
-
+/*
 //functions
 //create new inventory docs
+
 const createDocument = (db, createDoc, callback) => {
     const client = new MongoClient(mongourl);
     client.connect((err) => {
@@ -66,6 +67,7 @@ const findDocument = (db, criteria, callback) => {
         callback(docs);
     });
 }
+*/
 const handle_Find = (req, res, criteria) => {
     const client = new MongoClient(mongourl);
     client.connect((err) => {
@@ -212,8 +214,7 @@ app.get('/edit', (req, res) => {
         console.log("Connected successfully to the DB server.");
         const db = client.db(dbName);
 		let parsedURL = url.parse(req.url,true);
-		//const criteria = "'_id':ObjectId('"+parsedURL.query.id+"')";
-		const criteria = {"bookingid": "BK001"};
+		const criteria = "{'_id':ObjectId('"+parsedURL.query.id+"')}";
 		console.log(criteria);
         findDocument(db, criteria, (docs) => {
 			client.close();
