@@ -253,7 +253,12 @@ app.post('/update', (req, res) => {
 });
 
 //detail
-app.get('/details', (req, res) => {
+app.get('/detail', (req, res) => {
+    console.log("...Handling your 1 request");
+    handle_Details(res, req.query);
+});
+app.post('/detail', (req, res) => {
+    console.log("...Handling your 2 request");
     handle_Details(res, req.query);
 });
 
