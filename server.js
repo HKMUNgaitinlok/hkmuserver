@@ -251,6 +251,7 @@ app.post('/update', (req, res) => {
     client.connect((err) => {
 		console.log("22222222222");
 		console.log(req.fields.id);
+		const db = client.db(dbName);
         let DOCID = {};
         DOCID['_id'] = ObjectID(req.fields.id)
 		findDocument = (db, DOCID, (docs) => {
