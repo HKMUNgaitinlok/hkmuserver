@@ -249,16 +249,13 @@ app.post('/update', (req, res) => {
 	const client = new MongoClient(mongourl);
 	console.log("111111");
     client.connect((err) => {
-		console.log("22222222222");
 		console.log(req.fields.id);
 		const db = client.db(dbName);
         let DOCID = {};
         DOCID['_id'] = ObjectID(req.fields.id);
         let DOCCH = {};
         DOCCH['name'] = req.fields.Name;
-		console.log("33333333333333333");
 		db.collection('inventory').updateMany(DOCID,{$set: DOCCH}, (err,results) => {
-		console.log("4444444444");
 			assert.equal(err,null);
 			//console.log(results);
 			console.log(`Updated document(s): ${results.result.nModified}`);
@@ -295,19 +292,39 @@ app.get('/details', (req, res) => {
 });
 
 app.post('/details', (req, res) => {
-    console.log("...Handling your 2 request");
-    handle_Details(res, req.query);
+    console.log("details");
 });
 
-app.get("/map", (req, res) => {
-    console.log("...returning the map leaflet.");
-    res.status(200).render("map", {
-        lat: `${req.query.lat}`,
-        lon: `${req.query.lon}`,
-        zoom: `${req.query.zoom ? req.query.zoom : 15}`
-    });
+//del
+app.get('/del', (req, res) => {
+	const client = new MongoClient(mongourl);
+	console.log("1111112");
+    client.connect((err) => {
+		console.log(req.fields.id);
+		const db = client.db(dbName);
+        let DOCID = {};
+        DOCID['_id'] = ObjectID(req.fields.id);
+        let DOCCH = {};
+        DOCCH['name'] = req.fields.Name;
+		db.collection('inventory').remove(DOCID, (err,results) => {
+			assert.equal(err,null);
+			//console.log(results);
+			console.log("22222221");
+			findDocument(db, {}, (docs) => {
+				client.close();
+				console.log("Closed DB connection.");
+				console.log(docs);
+				res.status(200).render('home',{name: `${req.session.userid}` ,ninventory: docs.length, inventory: docs});
+			});
+		});
+	});
 });
 
+app.post('/del', (req, res) => {
+    console.log("details");
+});
+
+//404
 app.get('/*', (req, res) => {
     res.status(404).render("info", { message: `${req.path} - Unknown request!` })
 });
