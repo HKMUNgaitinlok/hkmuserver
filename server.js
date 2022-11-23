@@ -193,7 +193,9 @@ app.post('/create', (req, res) => {
         DOC['quantity'] = req.fields.quantity;
         DOC['description'] = req.fields.inv_type;
         DOC['owner'] = req.fields.owner;
-		DOC['photo'] = req.files.photo;
+		var bitmap = fs.readFileSync(req.files.photo);
+		DOC['photo']['type'] = req.files.photo;
+		DOC['photo']['data'] = new Buffer.from(bitmap).toString('base64');
         console.log("...putting data into DOC");
 		console.log(DOC);
 		console.log("...Creating the document");
