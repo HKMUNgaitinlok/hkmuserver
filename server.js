@@ -259,7 +259,7 @@ app.post('/update', (req, res) => {
 			assert.equal(err,null);
 			//console.log(results);
 			console.log(`Updated document(s): ${results.result.nModified}`);
-			res.status(200).render('info', { message: "Document created successfully!" });
+			res.status(200).render('info', { message: "Document updated successfully!" });
 		});
 	});
 });
@@ -303,7 +303,7 @@ app.get('/del', (req, res) => {
 		db.collection('inventory').remove(DOCID, function(err, obj) {
 			//console.log(results);
 			console.log("22222221");
-			res.status(200).render('info', { message: "Document created successfully!" });
+			res.status(200).render('info', { message: "Document deleted successfully!" });
 		});
 	});
 });
