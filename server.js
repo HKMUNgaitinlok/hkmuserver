@@ -213,10 +213,12 @@ app.get('/edit', (req, res) => {
         const db = client.db(dbName);
 		console.log("2");
 		let parsedURL = url.parse(req.url,true);
-        findDocument(db, {"_id":ObjectId(parsedURL.query.id)}, (docs) => {
+		console.log("3");
+        findDocument(db, {"'_id':'ObjectId("+parsedURL.query.id+")"}, (docs) => {
 			client.close();
             console.log("Closed DB connection.");
             console.log(docs);
+			res.status(200).render("edit");
             //res.status(200).render('home',{name: `${req.session.userid}` ,ninventory: docs.length, inventory: docs});
         });
 		/*
