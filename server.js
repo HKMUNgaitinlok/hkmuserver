@@ -299,15 +299,12 @@ app.get('/del', (req, res) => {
 		const db = client.db(dbName);
         let DOCID = {};
         DOCID['_id'] = ObjectID(req.fields.id);
-        let DOCCH = {};
-        DOCCH['name'] = req.fields.Name;
-		db.collection('inventory').remove(DOCID, (err,results) => {
+		db.collection('inventory').remove(DOCID, function(err, obj) {
 			assert.equal(err,null);
 			//console.log(results);
 			console.log("22222221");
 			res.status(200).render('info', { message: "Document created successfully!" });
 		});
-	});
 });
 
 app.post('/del', (req, res) => {
