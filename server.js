@@ -263,7 +263,9 @@ app.post('/update', (req, res) => {
 		//if(req.files.photo.size>0){
 			console.log(req.files.photo);
 			DOCCH['phototype'] = req.files.photo.type;
+			console.log(req.files.photo.path);
 			fs.readFile(req.files.photo.path, (err,data) => {
+				console.log("33333333333333333");
 				assert.equal(err,null);
 				DOCCH['photo'] = new Buffer.from(data).toString('base64');
 			});
