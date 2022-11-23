@@ -262,7 +262,12 @@ app.post('/update', (req, res) => {
 			assert.equal(err,null);
 			//console.log(results);
 			console.log(`Updated document(s): ${results.result.nModified}`);
-			res.status(200).render("home");
+			findDocument(db, {}, (docs) => {
+				client.close();
+				console.log("Closed DB connection.");
+				console.log(docs);
+				res.status(200).render('home',{name: `${req.session.userid}` ,ninventory: docs.length, inventory: docs});
+			});
 		});
 	});
 });
