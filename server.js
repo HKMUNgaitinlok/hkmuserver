@@ -211,10 +211,10 @@ app.get('/edit', (req, res) => {
 		assert.equal(null, err);
         console.log("Connected successfully to the DB server.");
         const db = client.db(dbName);
-		console.log("2");
 		let parsedURL = url.parse(req.url,true);
-		console.log("3");
-        findDocument(db, "{'_id':'{$eq:ObjectId("+parsedURL.query.id+")}}", (docs) => {
+		const criteria = "{'_id':'{$eq:ObjectId("+parsedURL.query.id+")}}";
+		console.log(criteria);
+        findDocument(db, criteria, (docs) => {
 			client.close();
             console.log("Closed DB connection.");
             console.log(docs);
