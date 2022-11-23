@@ -253,7 +253,7 @@ app.post('/update', (req, res) => {
 		console.log(req.fields.id);
         let DOCID = {};
         DOCID['_id'] = ObjectID(req.fields.id)
-		findDocument = (db, DOCID, callback) => {
+		findDocument = (db, DOCID, (docs) => {
 			console.log("33333333333333333");
 			db.collection('inventory').updateMany(criteria,{$set: changes}, (err,results) => {
 			console.log("4444444444");
@@ -262,7 +262,7 @@ app.post('/update', (req, res) => {
 				console.log(`Updated document(s): ${results.result.nModified}`)
 				callback();
 			});
-		}
+		});
 	});
 });
 
