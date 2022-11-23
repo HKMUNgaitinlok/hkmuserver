@@ -39,7 +39,7 @@ app.use(session({
     keys: ['th1s!sA5ecretK3y'],
     //maxAge: 90 * 24 * 60 * 60 * 1000
 }));
-/*
+
 //functions
 //create new inventory docs
 
@@ -67,7 +67,7 @@ const findDocument = (db, criteria, callback) => {
         callback(docs);
     });
 }
-*/
+
 const handle_Find = (req, res, criteria) => {
     const client = new MongoClient(mongourl);
     client.connect((err) => {
@@ -216,7 +216,7 @@ app.get('/edit', (req, res) => {
 		let parsedURL = url.parse(req.url,true);
 		const criteria = "{'_id':ObjectId('"+parsedURL.query.id+"')}";
 		console.log(criteria);
-        findDocument(db, criteria, (docs) => {
+        findDocument(db, {'_id' : ObjectId('637cd33e89a3a30016bcd890')}, (docs) => {
 			client.close();
             console.log("Closed DB connection.");
             console.log(docs);
