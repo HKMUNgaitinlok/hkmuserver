@@ -82,7 +82,7 @@ const handle_Find = (req, res, criteria) => {
         });
     });
 }
-
+/*
 //detail
 const handle_Details = (res, criteria) => {
     const client = new MongoClient(mongourl);
@@ -100,7 +100,7 @@ const handle_Details = (res, criteria) => {
         });
     });
 }
-
+*/
 //handling requests
 app.get('/', (req, res) => {
 	console.log(req.session.authenticated);
@@ -253,11 +253,28 @@ app.post('/update', (req, res) => {
 });
 
 //detail
-app.get('/detail', (req, res) => {
+app.get('/details', (req, res) => {
     console.log("...Handling your 1 request");
-    handle_Details(res, req.query);
+	const client = new MongoClient(mongourl);
+    client.connect((err) => {
+		assert.equal(null, err);
+        console.log("Connected successfully to the DB server.");
+        const db = client.db(dbName);
+		let parsedURL = url.parse(req.url,true);
+        let DOCID = {};
+        DOCID['_id'] = ObjectID(parsedURL.query.id)
+		//const criteria = "{'_id':ObjectId('"+parsedURL.query.id+"')}";
+        findDocument(db, DOCID, (docs) => {
+			client.close();
+            console.log("Closed DB connection.");
+            console.log(docs);
+			res.status(200).render("detail", {inventory: docs});
+            //res.status(200).render('home',{name: `${req.session.userid}` ,ninventory: docs.length, inventory: docs});
+        });
+	});
 });
-app.post('/detail', (req, res) => {
+
+app.post('/details', (req, res) => {
     console.log("...Handling your 2 request");
     handle_Details(res, req.query);
 });
