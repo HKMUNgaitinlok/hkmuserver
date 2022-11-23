@@ -298,12 +298,12 @@ app.get('/del', (req, res) => {
 		console.log(req.fields.id);
 		const db = client.db(dbName);
         let DOCID = {};
-        DOCID['_id'] = ObjectID(req.fields.id);
+        DOCID['_id'] = ObjectID(req.fields.id);/*
 		db.collection('inventory').remove(DOCID, function(err, obj) {
 			//console.log(results);
 			console.log("22222221");
 			res.status(200).render('info', { message: "Document created successfully!" });
-		});
+		});*/
 });
 
 app.post('/del', (req, res) => {
