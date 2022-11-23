@@ -253,7 +253,7 @@ app.post('/update', (req, res) => {
 		console.log(req.fields.id);
         let DOCID = {};
         DOCID['_id'] = ObjectID(req.fields.id)
-		const findDocument = (db, DOCID, callback) => {
+		findDocument = (db, DOCID, callback) => {
 			console.log("33333333333333333");
 			db.collection('inventory').updateMany(criteria,{$set: changes}, (err,results) => {
 			console.log("4444444444");
