@@ -260,6 +260,13 @@ app.post('/update', (req, res) => {
         DOCCH['quantity'] = req.fields.quantity;
         DOCCH['description'] = req.fields.description;
         DOCCH['owner'] = req.fields.owner;
+		if(req.files.photo.type){
+			DOCCH['phototype'] = req.files.photo.type;
+			fs.readFile(req.files.photo.path, (err,data) => {
+				assert.equal(err,null);
+				DOCCH['photo'] = new Buffer.from(data).toString('base64');
+			});
+		}
 		db.collection('inventory').updateMany(DOCID,{$set: DOCCH}, (err,results) => {
 			assert.equal(err,null);
 			//console.log(results);
