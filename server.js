@@ -237,6 +237,15 @@ app.get('/edit', (req, res) => {
 
 app.post('/edit', (req, res) => {
     console.log("...edit a document!");
+});
+
+//update
+app.get('/update', (req, res) => {
+    console.log("...updating");
+});
+
+app.post('/update', (req, res) => {
+    console.log("...Handling your update request");
 	const client = new MongoClient(mongourl);
 	console.log("111111");
     client.connect((err) => {
@@ -253,15 +262,6 @@ app.post('/edit', (req, res) => {
 			});
 		}
 	});
-});
-
-//update
-app.get('/update', (req, res) => {
-    console.log("...updating");
-});
-
-app.post('/update', (req, res) => {
-    console.log("...Handling your update request");
 });
 
 //detail
