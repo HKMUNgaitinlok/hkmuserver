@@ -268,6 +268,7 @@ app.post('/update', (req, res) => {
 				DOCCH['photo'] = new Buffer.from(data).toString('base64');
 			});
 		//}
+		console.log(DOCCH);
 		db.collection('inventory').updateMany(DOCID,{$set: DOCCH}, (err,results) => {
 			assert.equal(err,null);
 			//console.log(results);
