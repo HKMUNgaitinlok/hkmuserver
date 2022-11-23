@@ -255,6 +255,7 @@ app.post('/update', (req, res) => {
         let DOCID = {};
         DOCID['_id'] = ObjectID(req.fields.id)
 		findDocument = (db, DOCID, (docs) => {
+			client.close();
 			console.log("33333333333333333");
 			db.collection('inventory').updateMany(criteria,{$set: changes}, (err,results) => {
 			console.log("4444444444");
