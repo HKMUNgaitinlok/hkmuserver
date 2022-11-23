@@ -37,7 +37,7 @@ app.use(bodyParser.json());
 app.use(session({
     userid: "session",
     keys: ['th1s!sA5ecretK3y'],
-    //maxAge: 90 * 24 * 60 * 60 * 1000
+    maxAge: 5 * 60 * 1000
 }));
 
 //functions
@@ -132,6 +132,7 @@ app.post('/login', (req, res) => {
     });
     res.redirect("/");
 });
+
 app.use((req, res, next) => {
     console.log("...Checking login status");
     if (req.session.authenticated) {
@@ -230,40 +231,25 @@ app.get('/edit', (req, res) => {
 
 app.post('/edit', (req, res) => {
     console.log("...edit a document!");
-	/*
-    const client = new MongoClient(mongourl);
-    client.connect((err) => {
-        assert.equal(null, err);
-        console.log("Connected successfully to the DB server.");
-        const db = client.db(dbName);
+});
 
-        // Get a timestamp in seconds
-        var timestamp = Math.floor(new Date().getTime() / 1000);
-        // Create a date with the timestamp
-        var timestampDate = new Date(timestamp * 1000);
-
-        // Create a new ObjectID with a specific timestamp
-        var objectId = new ObjectID(timestamp);
-
-        DOC["_id"] = objectId;
-        DOC['inv_id'] = req.fields.inv_id;
-        DOC['name'] = req.fields.name;
-        DOC['inv_type'] = req.fields.inv_type;
-        DOC['quantity'] = req.fields.quantity;
-        DOC['description'] = req.fields.inv_type;
-        DOC['owner'] = req.fields.owner;
-		DOC['photo'] = req.files.photo;
-        console.log("...putting data into DOC");
-		console.log(DOC);
-		console.log("...Creating the document");
-		createDocument(db, DOC, (docs) => {
-			client.close();
-			console.log("Closed DB connection");
-		});
-		res.status(200).render('info', { message: "Document created successfully!" });
-		console.log("document Created");
+//update
+app.get('/update', (req, res) => {
+    console.log("...updating");
+	
+    res.status(200).render("login");
+});
+app.post('/update', (req, res) => {
+    console.log("...Handling your login request");
+    users.forEach((user) => {
+        if (user.name == req.fields.username && user.password == req.fields.password) {
+            req.session.authenticated = true;
+            req.session.userid = req.fields.username;
+            console.log(req.session.userid);
+            res.status(200).redirect("/home");
+        }
     });
-	*/
+    res.redirect("/");
 });
 
 //detail
