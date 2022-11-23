@@ -253,16 +253,16 @@ app.post('/update', (req, res) => {
 		console.log(req.fields.id);
 		const db = client.db(dbName);
         let DOCID = {};
-        DOCID['_id'] = ObjectID(req.fields.id)
-		findDocument = (db, DOCID, (docs) => {
-			console.log("33333333333333333");
-			db.collection('inventory').updateMany(criteria,{$set: changes}, (err,results) => {
-			console.log("4444444444");
-				assert.equal(err,null);
-				//console.log(results);
-				console.log(`Updated document(s): ${results.result.nModified}`)
-				callback();
-			});
+        DOCID['_id'] = ObjectID(req.fields.id);
+        let DOCCH = {};
+        DOCCH['name'] = req.fields.Name;
+		console.log("33333333333333333");
+		db.collection('inventory').updateMany(DOCID,{$set: DOCCH}, (err,results) => {
+		console.log("4444444444");
+			assert.equal(err,null);
+			//console.log(results);
+			console.log(`Updated document(s): ${results.result.nModified}`)
+			callback();
 		});
 	});
 });
