@@ -297,9 +297,9 @@ app.get('/del', (req, res) => {
     client.connect((err) => {
 		const db = client.db(dbName);
 		let parsedURL = url.parse(req.url,true);
-		console.log(parsedURL.query.id);
         let DOCID = {};
         DOCID['_id'] = ObjectID(parsedURL.query.id);
+		console.log(parsedURL.query.id);
 		db.collection('inventory').remove(DOCID, function(err, obj) {
 			//console.log(results);
 			console.log("22222221");
