@@ -254,6 +254,12 @@ app.post('/update', (req, res) => {
         let DOCID = {};
         DOCID['_id'] = ObjectID(req.fields.id);
         let DOCCH = {};
+        DOCCH['inv_id'] = req.fields.inv_id;
+        DOCCH['name'] = req.fields.Name;
+        DOCCH['inv_type'] = req.fields.inv_type;
+        DOCCH['quantity'] = req.fields.quantity;
+        DOCCH['description'] = req.fields.description;
+        DOCCH['owner'] = req.fields.owner;
 		//if(req.files.photo.size>0){
 			DOCCH['phototype'] = req.files.photo.type;
 			fs.readFile(req.files.photo.path, (err,data) => {
@@ -262,14 +268,9 @@ app.post('/update', (req, res) => {
 				console.log(DOCCH['photo']);
 			});
 		//}
-        DOCCH['inv_id'] = req.fields.inv_id;
-        DOCCH['name'] = req.fields.Name;
-        DOCCH['inv_type'] = req.fields.inv_type;
-        DOCCH['quantity'] = req.fields.quantity;
-        DOCCH['description'] = req.fields.description;
-        DOCCH['owner'] = req.fields.owner;
 		console.log(DOCCH);
 		console.log("44444444444444444");
+		await sleep(1000);
 		db.collection('inventory').updateMany(DOCID,{$set: DOCCH}, (err,results) => {
 			assert.equal(err,null);
 			//console.log(results);
