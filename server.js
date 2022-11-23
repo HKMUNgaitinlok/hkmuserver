@@ -300,7 +300,6 @@ app.get('/del', (req, res) => {
         let DOCID = {};
         DOCID['_id'] = ObjectID(req.fields.id);
 		db.collection('inventory').remove(DOCID, function(err, obj) {
-			assert.equal(err,null);
 			//console.log(results);
 			console.log("22222221");
 			res.status(200).render('info', { message: "Document created successfully!" });
