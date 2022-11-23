@@ -248,9 +248,13 @@ app.get('/update', (req, res) => {
 app.post('/update', (req, res) => {
     console.log("...Handling your update request");
 	const client = new MongoClient(mongourl);
+	console.log("111111");
     client.connect((err) => {
+		console.log("22222222222");
 		const findDocument = (db, criteria, callback) => {
+			console.log("33333333333333333");
 			db.collection('inventory').updateMany(criteria,{$set: changes}, (err,results) => {
+			console.log("4444444444");
 				assert.equal(err,null);
 				//console.log(results);
 				let parsedURL = url.parse(req.url,true);
