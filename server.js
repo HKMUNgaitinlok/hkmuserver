@@ -295,10 +295,11 @@ app.get('/del', (req, res) => {
 	const client = new MongoClient(mongourl);
 	console.log("1111112");
     client.connect((err) => {
-		console.log(req.fields.id);
 		const db = client.db(dbName);
+		let parsedURL = url.parse(req.url,true);
+		console.log(parsedURL.query.id);
         let DOCID = {};
-        DOCID['_id'] = ObjectID(req.fields.id);
+        DOCID['_id'] = ObjectID(parsedURL.query.id);
 		db.collection('inventory').remove(DOCID, function(err, obj) {
 			//console.log(results);
 			console.log("22222221");
