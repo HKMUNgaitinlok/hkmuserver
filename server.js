@@ -157,7 +157,8 @@ app.get('/home', (req, res) => {
 		
         const db = client.db(dbName);
         //callback()
-        findDocument(db, {}, (docs) => {
+		var query = {},{'photo':false};
+        findDocument(db, query, (docs) => {
 			client.close();
             console.log("Closed DB connection.");
 			console.log(docs);
