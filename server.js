@@ -216,7 +216,7 @@ app.get('/edit', (req, res) => {
 		let parsedURL = url.parse(req.url,true);
 		const criteria = "{'_id':ObjectId('"+parsedURL.query.id+"')}";
 		console.log(criteria);
-        findDocument(db, {'_id' : ObjectId("637cd33e89a3a30016bcd890")}, (docs) => {
+        findDocument(db, "", (docs) => {
 			client.close();
             console.log("Closed DB connection.");
             console.log(docs);
