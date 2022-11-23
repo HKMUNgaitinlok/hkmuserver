@@ -237,17 +237,11 @@ app.get('/edit', (req, res) => {
 
 app.post('/edit', (req, res) => {
     console.log("...edit a document!");
-});
-
-//update
-app.get('/update', (req, res) => {
-    console.log("...updating");
 	const client = new MongoClient(mongourl);
 	console.log("111111");
     client.connect((err) => {
 		console.log("22222222222");
-		let parsedURL = url.parse(req.url,true);
-		console.log(parsedURL.query.id);
+		console.log(req.fields.id);
 		const findDocument = (db, criteria, callback) => {
 			console.log("33333333333333333");
 			db.collection('inventory').updateMany(criteria,{$set: changes}, (err,results) => {
@@ -259,6 +253,11 @@ app.get('/update', (req, res) => {
 			});
 		}
 	});
+});
+
+//update
+app.get('/update', (req, res) => {
+    console.log("...updating");
 });
 
 app.post('/update', (req, res) => {
