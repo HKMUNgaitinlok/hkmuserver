@@ -266,7 +266,6 @@ app.post('/update', (req, res) => {
 			console.log(req.files.photo.path);
 			console.log(req.files.photo.size);
 			fs.readFile(req.files.photo.path, (err,data) => {
-				assert.equal(err,null);
 				DOC['photo'] = new Buffer.from(data).toString('base64');
 			});
 		//}
