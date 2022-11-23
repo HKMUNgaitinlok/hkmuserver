@@ -211,7 +211,14 @@ app.get('/edit', (req, res) => {
 		assert.equal(null, err);
         console.log("Connected successfully to the DB server.");
         const db = client.db(dbName);
-		res.writeHead(200, {"Content-Type" : "text/json"});
+		console.log("2");
+		let parsedURL = url.parse(req.url,true);
+        findDocument(db, {"_id":ObjectId(parsedURL.query.id)}, (docs) => {
+			client.close();
+            console.log("Closed DB connection.");
+            console.log(docs);
+            //res.status(200).render('home',{name: `${req.session.userid}` ,ninventory: docs.length, inventory: docs});
+        });
 		/*
 		const db = client.db(dbName);
 		let parsedURL = url.parse(req.url,true);
