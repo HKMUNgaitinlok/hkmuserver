@@ -212,9 +212,9 @@ app.get('/edit', (req, res) => {
         console.log("Connected successfully to the DB server.");
         const db = client.db(dbName);
 		let parsedURL = url.parse(req.url,true);
-		const criteria = "{'_id':ObjectId('"+parsedURL.query.id+"')";
+		const criteria = "{'_id':ObjectId('"+parsedURL.query.id+"')}";
 		console.log(criteria);
-        findDocument(db, criteria, (docs) => {
+        findDocument(db, criteria.replace(/["]/g, ""), (docs) => {
 			client.close();
             console.log("Closed DB connection.");
             console.log(docs);
