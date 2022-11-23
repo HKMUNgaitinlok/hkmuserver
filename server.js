@@ -246,7 +246,7 @@ app.get('/update', (req, res) => {
     res.status(200).render("login");
 });
 app.post('/update', (req, res) => {
-    console.log("...Handling your login request");
+    console.log("...Handling your update request");
 	const findDocument = (db, criteria, callback) => {
 		db.collection('inventory').updateMany(criteria,{$set: changes}, (err,results) => {
 			assert.equal(err,null);
