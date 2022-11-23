@@ -157,7 +157,7 @@ app.get('/home', (req, res) => {
 		
         const db = client.db(dbName);
         //callback()
-		let DOCID = {},{'photo':false};
+		let DOCID = {}..;
         findDocument(db, DOCID, (docs) => {
 			client.close();
             console.log("Closed DB connection.");
@@ -267,10 +267,8 @@ app.get('/details', (req, res) => {
         console.log("Connected successfully to the DB server.");
         const db = client.db(dbName);
 		let parsedURL = url.parse(req.url,true);
-        let DOCID = {};
-        DOCID['_id'] = ObjectID(parsedURL.query.id)
 		//const criteria = "{'_id':ObjectId('"+parsedURL.query.id+"')}";
-        findDocument(db, DOCID, (docs) => {
+        findDocument(db, {'photo:false'}, (docs) => {
 			client.close();
             console.log("Closed DB connection.");
             console.log(docs);
