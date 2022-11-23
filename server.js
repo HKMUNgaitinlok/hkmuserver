@@ -254,23 +254,20 @@ app.post('/update', (req, res) => {
         let DOCID = {};
         DOCID['_id'] = ObjectID(req.fields.id);
         let DOCCH = {};
-        DOCCH['inv_id'] = req.fields.inv_id;
-        DOCCH['name'] = req.fields.Name;
-        DOCCH['inv_type'] = req.fields.inv_type;
-        DOCCH['quantity'] = req.fields.quantity;
-        DOCCH['description'] = req.fields.description;
-        DOCCH['owner'] = req.fields.owner;
 		//if(req.files.photo.size>0){
-			console.log(req.files.photo);
 			DOCCH['phototype'] = req.files.photo.type;
-			console.log(req.files.photo.path);
-			console.log(req.files.photo.size);
 			fs.readFile(req.files.photo.path, (err,data) => {
 				DOCCH['photo'] = new Buffer.from(data).toString('base64');
 				console.log("3333333333333");
 				console.log(DOCCH['photo']);
 			});
 		//}
+        DOCCH['inv_id'] = req.fields.inv_id;
+        DOCCH['name'] = req.fields.Name;
+        DOCCH['inv_type'] = req.fields.inv_type;
+        DOCCH['quantity'] = req.fields.quantity;
+        DOCCH['description'] = req.fields.description;
+        DOCCH['owner'] = req.fields.owner;
 		console.log(DOCCH);
 		console.log("44444444444444444");
 		db.collection('inventory').updateMany(DOCID,{$set: DOCCH}, (err,results) => {
