@@ -194,7 +194,7 @@ app.post('/create', (req, res) => {
         DOC['description'] = req.fields.inv_type;
         DOC['owner'] = req.fields.owner;
 		console.log(req.files.photo);
-		DOC['photo']['type'] = req.files.type;
+		//DOC['photo']['type'] = req.files.photo.type;
 		fs.readFile(req.files.photo.path, (err,data) => {
 			assert.equal(err,null);
 			DOC['photo']['data'] = new Buffer.from(data).toString('base64');
