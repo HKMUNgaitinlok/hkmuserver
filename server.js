@@ -247,16 +247,19 @@ app.get('/update', (req, res) => {
 });
 app.post('/update', (req, res) => {
     console.log("...Handling your update request");
-	const findDocument = (db, criteria, callback) => {
-		db.collection('inventory').updateMany(criteria,{$set: changes}, (err,results) => {
-			assert.equal(err,null);
-			//console.log(results);
-			let parsedURL = url.parse(req.url,true);
-			console.log(parsedURL.query.id);
-			console.log(`Updated document(s): ${results.result.nModified}`)
-			callback();
-		});
-	}
+	const client = new MongoClient(mongourl);
+    client.connect((err) => {
+		const findDocument = (db, criteria, callback) => {
+			db.collection('inventory').updateMany(criteria,{$set: changes}, (err,results) => {
+				assert.equal(err,null);
+				//console.log(results);
+				let parsedURL = url.parse(req.url,true);
+				console.log(parsedURL.query.id);
+				console.log(`Updated document(s): ${results.result.nModified}`)
+				callback();
+			});
+		}
+	});
 });
 
 //detail
