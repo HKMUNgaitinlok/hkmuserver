@@ -57,7 +57,7 @@ const createDocument = (db, createDoc, callback) => {
     });
 }
 //find
-const findDocument = (db, criteria.replace(/["]/g, ""), callback) => {
+const findDocument = (db, criteria, callback) => {
     let cursor = db.collection('inventory').find(criteria);
     console.log(`findDocument: ${JSON.stringify(criteria)}`);
     cursor.toArray((err, docs) => {
