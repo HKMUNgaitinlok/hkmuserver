@@ -247,15 +247,16 @@ app.get('/update', (req, res) => {
 });
 app.post('/update', (req, res) => {
     console.log("...Handling your login request");
-    users.forEach((user) => {
-        if (user.name == req.fields.username && user.password == req.fields.password) {
-            req.session.authenticated = true;
-            req.session.userid = req.fields.username;
-            console.log(req.session.userid);
-            res.status(200).redirect("/home");
-        }
-    });
-    res.redirect("/");
+	const findDocument = (db, criteria, callback) => {
+		db.collection('inventory').updateMany(criteria,{$set: changes}, (err,results) => {
+			assert.equal(err,null);
+			//console.log(results);
+			let parsedURL = url.parse(req.url,true);
+			console.log(parsedURL.query.id);
+			console.log(`Updated document(s): ${results.result.nModified}`)
+			callback();
+		});
+	}
 });
 
 //detail
