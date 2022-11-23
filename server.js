@@ -261,8 +261,8 @@ app.post('/update', (req, res) => {
 		console.log("4444444444");
 			assert.equal(err,null);
 			//console.log(results);
-			console.log(`Updated document(s): ${results.result.nModified}`)
-			callback();
+			console.log(`Updated document(s): ${results.result.nModified}`);
+			res.status(200).render("home");
 		});
 	});
 });
