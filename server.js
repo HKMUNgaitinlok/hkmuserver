@@ -272,6 +272,7 @@ app.post('/update', (req, res) => {
 			});
 		//}
 		console.log(DOCCH);
+		console.log("44444444444444444");
 		db.collection('inventory').updateMany(DOCID,{$set: DOCCH}, (err,results) => {
 			assert.equal(err,null);
 			//console.log(results);
