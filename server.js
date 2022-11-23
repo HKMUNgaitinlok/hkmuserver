@@ -205,12 +205,13 @@ app.post('/create', (req, res) => {
 
 //edit
 app.get('/edit', (req, res) => {
-    console.log("...Welcome to the edit page!")
+    console.log("...Welcome to the edit page!");
 	const client = new MongoClient(mongourl);
     client.connect((err) => {
 		assert.equal(null, err);
         console.log("Connected successfully to the DB server.");
         const db = client.db(dbName);
+		res.writeHead(200, {"Content-Type" : "text/json"});
 		/*
 		const db = client.db(dbName);
 		let parsedURL = url.parse(req.url,true);
