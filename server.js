@@ -242,11 +242,6 @@ app.post('/edit', (req, res) => {
 //update
 app.get('/update', (req, res) => {
     console.log("...updating");
-	
-    res.status(200).render("login");
-});
-app.post('/update', (req, res) => {
-    console.log("...Handling your update request");
 	const client = new MongoClient(mongourl);
 	console.log("111111");
     client.connect((err) => {
@@ -264,6 +259,10 @@ app.post('/update', (req, res) => {
 			});
 		}
 	});
+});
+
+app.post('/update', (req, res) => {
+    console.log("...Handling your update request");
 });
 
 //detail
