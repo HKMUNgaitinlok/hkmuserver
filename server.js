@@ -59,7 +59,7 @@ const createDocument = (db, createDoc, callback) => {
 //find
 const findDocument = (db, criteria, callback) => {
     let cursor = db.collection('inventory').find(criteria);
-    console.log(`findDocument: criteria`);
+    console.log(`findDocument: `+criteria);
     cursor.toArray((err, docs) => {
         assert.equal(err, null);
         console.log(`findDocument: ${docs.length}`);
