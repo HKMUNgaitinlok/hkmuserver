@@ -26,9 +26,8 @@
         <div class="container-fluid">
             <div class="well">
             <div class="row">
-                <% if (inventory[0]["photo"]) { %>
                     <img src="data:image/<%= inventory[0]["photo"]["mimetype"] %>;base64, <%= inventory[0]["photo"]["data"] %>"><br>
-                <% } %>
+
             </div>
             <div class="row">
                     <p>inv_id:  <%=inventory[0]["inv_id"]%></p><br>
@@ -38,8 +37,6 @@
                     <p>Description:  <%=inventory[0]["description"]%></p><br>
                     <p>Owner: <%=inventory[0]["owner"]%></p><br>
 
-    
-                <p>Manager: <%=inventory[0]["owner"]%></p><br>
                 
             </div>
             </div>
