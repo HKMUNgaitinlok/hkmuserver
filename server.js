@@ -39,7 +39,7 @@ app.use(session({
     keys: ['th1s!sA5ecretK3y'],
     //maxAge: 90 * 24 * 60 * 60 * 1000
 }));
-/*
+
 //functions
 //create new inventory docs
 
@@ -67,7 +67,7 @@ const findDocument = (db, criteria, callback) => {
         callback(docs);
     });
 }
-*/
+
 const handle_Find = (req, res, criteria) => {
     const client = new MongoClient(mongourl);
     client.connect((err) => {
