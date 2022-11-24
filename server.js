@@ -264,13 +264,10 @@ app.post('/update', (req, res) => {
 			DOCCH['phototype'] = req.files.photo.type;
 			fs.readFile(req.files.photo.path, (err,data) => {
 				DOCCH['photo'] = new Buffer.from(data).toString('base64');
-				console.log("3333333333333");
-				console.log(DOCCH['photo']);
 			});
 		//}
 		console.log(DOCCH);
 		console.log("44444444444444444");
-		await sleep(1000);
 		db.collection('inventory').updateMany(DOCID,{$set: DOCCH}, (err,results) => {
 			assert.equal(err,null);
 			//console.log(results);
