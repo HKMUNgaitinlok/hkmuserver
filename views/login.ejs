@@ -8,30 +8,146 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <div class="container-fluid text-left ">
-            <div class="card bg-dark text-white">
-                <div class="card-body">Welcome, Please login to see the inventory.</div>
-            </div>
-            <br>
-            <div class="well">
-                <form action="/login" method="post">
-                    
-                        <label for="username">Username:</label>
-                        
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Username">
-                            <br>
-               
-                        <label for="password">Password:</label>
-                     
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                    <br>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                </form>
-            </div>
-        </div>
-    </body>
+		<style>
+			.dark{
+				color: #EEE;
+			}
+			.dark .section,
+			.section.dark {
+				background-color: #282828;
+				border-color: rgba(255,255,255,0.1);
+			}
+			.section {
+				position: relative;
+				width: 100%;
+				margin: 60px 0;
+				padding: 60px 0;
+				background-color: #F9F9F9;
+				overflow: hidden;
+			}
+			.mx-auto {
+				float: none !important;
+			}
+			.form-group {
+				margin-bottom: 1rem;
+			}
+			label {
+				display: inline-block;
+				font-size: 13px;
+				font-weight: 700;
+				font-family: 'Poppins', sans-serif;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				color: #555;
+				margin-bottom: 10px;
+				cursor: pointer;
+			}
+			h3{
+				font-size: 1.5rem;
+				color: #444;
+				font-weight: 600;
+				line-height: 1.5;
+				margin: 0 0 30px 0;
+				font-family: 'Poppins', sans-serif;
+			}
+			.button {
+				display: inline-block;
+				position: relative;
+				cursor: pointer;
+				outline: none;
+				white-space: nowrap;
+				margin: 5px;
+				padding: 8px 22px;
+				font-size: 0.875rem;
+				line-height: 24px;
+				background-color: #1ABC9C;
+				color: #FFF;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				border: none;
+				text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+			}
+
+			body:not(.device-touch) .button {
+				-webkit-transition: all .2s ease-in-out;
+				-o-transition: all .2s ease-in-out;
+				transition: all .2s ease-in-out;
+			}
+			.button.button-3d {
+				border-radius: 3px;
+				box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);
+				-webkit-transition: none;
+				-o-transition: none;
+				transition: none;
+			}
+
+			.button.button-3d:hover {
+				background-color: #1ABC9C;
+				opacity: 0.9;
+			}
+			.button-black:not(.button-border) {
+				background-color: #111 !important;
+			}
+			.vertical-middle {
+				z-index: 3;
+				position: relative;
+				display: -ms-flexbox;
+				display: flex;
+				width: 100%;
+				min-height: 100%;
+				justify-content: center;
+				flex-flow: column;
+			}
+		</style> 
+ </head>
+	<body>
+		<div id="wrapper" class="clearfix">
+			<section id="content">
+				<div class="content-wrap py-0">
+
+					<div class="section dark p-0 m-0 h-100 position-absolute"></div>
+
+					<div class="section bg-transparent min-vh-100 p-0 m-0 d-flex">
+						<div class="vertical-middle">
+							<div class="container py-5">
+
+								<div class="text-center">
+									<h1 alt="Canvas Logo" style="height: 70px;color:white;">HKMU Inventory</h1>
+								</div>
+
+								<div class="card mx-auto rounded-0 border-0" style="max-width: 400px;">
+									<div class="card-body" style="padding: 40px;">
+										<form action="/login" method="post" id="login-form" class="mb-0" name="login-form">
+											<h3>Login to your Account</h3>
+
+											<div class="row">
+												<div class="col-12 form-group">
+													<label for="login-form-username">Username:</label>
+													<input type="text" name="username" id="username" placeholder="Username" class="form-control not-dark" />
+												</div>
+
+												<div class="col-12 form-group">
+													<label for="login-form-password">Password:</label>
+													<input type="password" id="password" name="password" class="form-control not-dark" />
+												</div>
+
+												<div class="col-12 form-group mb-0">
+													<button class="button button-3d button-black m-0" type="submit" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+		</div>
+
+	</body>
 </html>
