@@ -341,7 +341,7 @@ app.post('/search', (req, res) => {
 			client.close();
             console.log("Closed DB connection.");
             console.log(docs);
-			res.status(200).render("search", {name:`${req.fields.name}`,inventory: docs});
+			res.status(200).render("search", {name:`${req.fields.name}`,inventory: docs,ninventory: docs.length});
             //res.status(200).render('home',{name: `${req.session.userid}` ,ninventory: docs.length, inventory: docs});
         });
 	});
