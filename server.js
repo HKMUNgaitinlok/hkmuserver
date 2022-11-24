@@ -325,6 +325,28 @@ app.post('/del', (req, res) => {
     console.log("details");
 });
 
+//search
+app.get('/search', (req, res) => {
+	console.log("222222222");
+});
+
+app.post('/search', (req, res) => {
+	const client = new MongoClient(mongourl);
+	console.log("11111123333");
+    client.connect((err) => {
+		const db = client.db(dbName);
+        let DOCID = {};
+        DOCID['name'] = req.fields.name;
+        findDocument(db, DOCID, (docs) => {
+			client.close();
+            console.log("Closed DB connection.");
+            console.log(docs);
+			res.status(200).render("search", {name:`${req.fields.name}`,inventory: docs});
+            //res.status(200).render('home',{name: `${req.session.userid}` ,ninventory: docs.length, inventory: docs});
+        });
+	});
+});
+
 //404
 app.get('/*', (req, res) => {
     res.status(404).render("info", { message: `${req.path} - Unknown request!` })
