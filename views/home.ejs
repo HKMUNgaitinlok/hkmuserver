@@ -19,6 +19,15 @@
                 <a href="/create" class="btn btn-primary" role="button">Create new inventory</a>
             </div>
             <div class="row">
+			<form action="/search" method="POST" enctype="multipart/form-data">
+				<div class="form_input">
+					<label>Search inventory name : </label>
+					<input type="text" id="name" name="name" placeholder=" Search name:">
+				</div>
+				<div class="input-box checkout pt30 pb20">
+					<input type="submit" value="Submit" name="submit">
+				</div>
+		   </form>
                 <p>Search inventory name:
                 <label for="bar"><span class="glyphicon glyphicon-search"></span></label><input style="width:100%" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search name:" name="bar"><br></p>
                         <script> var inventory = <%- JSON.stringify(inventory)%>; 
