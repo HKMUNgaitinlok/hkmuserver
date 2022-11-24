@@ -65,15 +65,17 @@
                 <a href="/create" class="btn btn-primary" role="button">Create new inventory</a>
             </div>
             <div class="row">
-			<form action="/search" method="POST" enctype="multipart/form-data">
-				<div class="form_input">
-					<label>Search inventory name : </label>
-					<input type="text" id="name" name="name" placeholder=" Search name:">
-				</div>
-				<div class="input-box checkout pt30 pb20">
-					<input type="submit" value="Submit" name="submit">
-				</div>
-		   </form>
+				<form action="/search" method="POST" enctype="multipart/form-data">
+					<div class="form_input">
+						<label>Search inventory name : </label>
+						<input type="text" id="name" name="name" placeholder=" Search name:">
+					</div>
+					<div class="input-box checkout pt30 pb20">
+						<input type="submit" value="Submit" name="submit">
+					</div>
+			   </form>
+            </div>
+            <div class="row">
 				<table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 						<tr>
@@ -107,7 +109,7 @@
 
 					</tbody>
 				</table>
-            </div>
+			</div>
         </div>
         <script>
 
