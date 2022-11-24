@@ -4,9 +4,55 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>inventory</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<style>
+		.content-wrap {
+			position: relative;
+			padding: 80px 0;
+			overflow: hidden;
+		}
+		div.dataTables_wrapper div.dataTables_filter {
+			text-align: right;
+		}
+		div.dataTables_wrapper div.dataTables_filter label {
+			font-weight: normal;
+			white-space: nowrap;
+			text-align: left;
+		}
+		label {
+			display: inline-block;
+			font-size: 13px;
+			font-weight: 700;
+			font-family: 'Poppins', sans-serif;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			color: #555;
+			margin-bottom: 10px;
+			cursor: pointer;
+		}
+		div.dataTables_wrapper div.dataTables_filter input {
+			margin-left: 0.5em;
+			display: inline-block;
+			width: auto;
+		}
+		div.table-responsive>div.dataTables_wrapper>div.row {
+			margin: 0;
+		}
+		div.dataTables_wrapper div.dataTables_paginate {
+			margin: 0;
+			white-space: nowrap;
+			text-align: right;
+		}
+		div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+			margin: 2px 0;
+			white-space: nowrap;
+			justify-content: flex-end;
+		}
+		</style>
     </head>
     <body>
         <div class="jumbotron text-center">
@@ -28,34 +74,58 @@
 					<input type="submit" value="Submit" name="submit">
 				</div>
 		   </form>
-                <p>Search inventory name:
-                <label for="bar"><span class="glyphicon glyphicon-search"></span></label><input style="width:100%" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search name:" name="bar"><br></p>
-                        <script> var inventory = <%- JSON.stringify(inventory)%>; 
-						 for (var i=0;i<<%=ninventory%>;i++){ 
-							document.write(
-							"inv_id : " + inventory[i]["inv_id"]+"<br>"+
-							"name : " + inventory[i]["name"]+"<br>"+
-							"inv_type : " + inventory[i]["inv_type"]+"<br>"+
-							"quantity : " + inventory[i]["quantity"]+"<br>"+
-							"description : " + inventory[i]["description"]+"<br>"+
-							"owner : " + inventory[i]["owner"]+"<br>"+
-							'<a href="/details?id='+inventory[i]["_id"]+'" class="btn btn-primary" role="button">Details</a>'+"<br>"+
-							'<a href="/edit?id='+inventory[i]["_id"]+'" class="btn btn-primary" role="button">Edit</a>'+"<br>"+
-							'<a href="/del?id='+inventory[i]["_id"]+'" class="btn btn-primary" role="button">Delete</a>'+"<br>");
-						}
-						</script>
+				<section id="content">
+					<div class="content-wrap">
+						<div class="container clearfix">
+
+							<div class="table-responsive">
+								<table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+									<thead>
+										<tr>
+											<th>Inv_id</th>
+											<th>Name</th>
+											<th>Inv_type</th>
+											<th>Quantity</th>
+											<th>Description</th>
+											<th>Owner</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<script> var inventory = <%- JSON.stringify(inventory)%>; 
+										 for (var i=0;i<<%=ninventory%>;i++){ 
+											document.write(
+											"<tr>"+
+											"<td> " + inventory[i]["inv_id"]+"</td><br>"+
+											"<td>" + inventory[i]["name"]+"</td><br>"+
+											"<td>" + inventory[i]["inv_type"]+"</td><br>"+
+											"<td>" + inventory[i]["quantity"]+"</td><br>"+
+											"<td>" + inventory[i]["description"]+"</td><br>"+
+											"<td>" + inventory[i]["owner"]+"</td><br>"+
+											'<td><a href="/details?id='+inventory[i]["_id"]+'" class="btn btn-primary" role="button">Details</a>'+"<br>"+
+											'<a href="/edit?id='+inventory[i]["_id"]+'" class="btn btn-primary" role="button">Edit</a>'+"<br>"+
+											'<a href="/del?id='+inventory[i]["_id"]+'" class="btn btn-primary" role="button">Delete</a>'+"</td><br>"+
+											"</tr>"
+											);
+										}
+										</script>
+
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+					</div>
+				</section>
             </div>
         </div>
         <script>
-        $(document).ready(function(){
-            $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
+
+			$(document).ready(function() {
+				$('#datatable1').dataTable();
+			});
 
         </script>
+		<script src="https://websiteshk.com/js/bs-datatable.js"></script>
     </body>
 </html>
